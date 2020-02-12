@@ -16,7 +16,6 @@ _global_script_class_icons={
 [application]
 
 config/name="Godot-Roguelike"
-config/icon="res://icon.png"
 
 [gdnative]
 
