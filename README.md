@@ -4,9 +4,9 @@ A coffee-break roguelike made with [Godot](https://godotengine.org/) game engine
 
 ## Planing
 
-- Deployment to web & upload to GitHub static page
-- Add TileMap & TileSet for the dungeon floor
-- Create a static dungeon floor for testing
+- ~~Deployment to web & upload to GitHub static page~~
+- ~~Add TileMap & TileSet for the dungeon floor~~
+- ~~Create a static dungeon floor for testing~~
 - Add an object layer (another TileMap?)
 - Add the player
 - Add an enemy
