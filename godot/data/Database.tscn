@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://entity/Entity.tscn" type="PackedScene" id=1]
+[ext_resource path="res://data/Statue.gd" type="Script" id=2]
+[ext_resource path="res://data/Database.gd" type="Script" id=3]
+
+[node name="Database" type="Node"]
+script = ExtResource( 3 )
+
+[node name="props" type="Node" parent="."]
+
+[node name="statue" parent="props" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Symbol" parent="props/statue" index="0"]
+region_rect = Rect2( 256, 128, 64, 64 )
+
+[editable path="props/statue"]
