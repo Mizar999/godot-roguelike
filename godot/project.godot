@@ -8,15 +8,44 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Entity",
+"class": "Actor",
+"language": "GDScript",
+"path": "res://entity/Actor.gd"
+}, {
+"base": "Reference",
+"class": "Command",
+"language": "GDScript",
+"path": "res://command/Command.gd"
+}, {
+"base": "Reference",
+"class": "CommandResult",
+"language": "GDScript",
+"path": "res://command/CommandResult.gd"
+}, {
+"base": "Node",
+"class": "Entity",
+"language": "GDScript",
+"path": "res://entity/Entity.gd"
+}, {
+"base": "Reference",
+"class": "Game",
+"language": "GDScript",
+"path": "res://game/Game.gd"
+} ]
 _global_script_class_icons={
-
+"Actor": "",
+"Command": "",
+"CommandResult": "",
+"Entity": "",
+"Game": ""
 }
 
 [application]
 
 config/name="Godot-Roguelike"
-run/main_scene="res://game/Game.tscn"
+run/main_scene="res://scenes/Main.tscn"
 
 [autoload]
 
