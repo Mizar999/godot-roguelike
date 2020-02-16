@@ -4,6 +4,7 @@ onready var map = $Map
 var game
 
 func _ready():
+	randomize()
 	game = Game.new(map)
 	game.main_loop()
 

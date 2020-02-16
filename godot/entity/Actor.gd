@@ -1,5 +1,6 @@
 extends Entity
 class_name Actor
 
-func take_turn(_game: Game):
-	emit_signal("acted", Command.new())
+#warning-ignore:unused_argument
+func take_turn(game: Game):
+	emit_signal(RL.SIGNAL_ACTED, Command.new())

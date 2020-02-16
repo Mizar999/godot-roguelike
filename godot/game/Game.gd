@@ -9,7 +9,8 @@ func _init(map_p):
 	actors = Scheduler.new()
 	map = map_p
 	player = spawn("actors/player", Vector2(1, 1))
-	spawn("props/statue", Vector2(2, 3))
+	for cell in map.get_passable_cells(10):
+		spawn("props/statue", cell).get_node("Symbol").self_modulate = Color(randf(), randf(), randf())
 
 func spawn(path: String, cell: Vector2):
 	var entity = RL.database.create_entity(path)
@@ -36,8 +37,8 @@ func main_loop() -> void:
 				break
 		
 		actor.call_deferred("take_turn", self)
-		command = yield(actor, "acted")
+		command = yield(actor, RL.SIGNAL_ACTED)
 		command.call_deferred("execute", self)
-		command_result = yield(command, "executed")
+		command_result = yield(command, RL.SIGNAL_EXECUTED)
 		if command_result.result_type != command_result.ResultType.Success and command_result.message != "":
 			print(command_result.message)
