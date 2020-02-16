@@ -1,17 +1,19 @@
 extends Reference
 class_name Command
 
-func execute(_game: Game) -> CommandResult:
-	return success()
+signal executed
 
-func success() -> CommandResult:
-	return CommandResult.new(CommandResult.ResultType.Success)
+func execute(_game: Game):
+	success()
 
-func fail(reason: String = "") -> CommandResult:
-	return CommandResult.new(CommandResult.ResultType.Failure, reason)
+func success():
+	emit_signal("executed", CommandResult.new(CommandResult.ResultType.Success))
 
-func wait(reason: String = "") -> CommandResult:
-	return CommandResult.new(CommandResult.ResultType.Wait, reason)
+func fail(reason: String = ""):
+	emit_signal("executed", CommandResult.new(CommandResult.ResultType.Failure, reason))
 
-func alternate(game: Game, command: Command) -> CommandResult:
-	return command.execute(game)
+func wait(reason: String = ""):
+	emit_signal("executed", CommandResult.new(CommandResult.ResultType.Wait, reason))
+
+func alternate(game: Game, command: Command):
+	command.execute(game)
