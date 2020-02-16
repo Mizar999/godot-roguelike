@@ -19,6 +19,9 @@ const DIRECTIONS = {
 	"nw": Vector2(-1, -1)
 }
 
+const ACTION_QUIT = "quit"
+const ACTION_WAIT = "wait"
+
 const GROUP_ENTITY = "entity"
 const GROUP_BLOCKER = "blocker"
 
