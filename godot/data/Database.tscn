@@ -21,6 +21,8 @@ region_rect = Rect2( 256, 128, 64, 64 )
 [node name="player" parent="actors" instance=ExtResource( 1 )]
 position = Vector2( 128, 0 )
 script = ExtResource( 2 )
+entity_name = "Player"
+blocks_movement = true
 
 [node name="Symbol" parent="actors/player" index="0"]
 region_rect = Rect2( 0, 256, 64, 64 )

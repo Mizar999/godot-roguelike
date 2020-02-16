@@ -43,6 +43,11 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://entity/Player.gd"
+}, {
+"base": "Reference",
+"class": "Scheduler",
+"language": "GDScript",
+"path": "res://game/Scheduler.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
@@ -51,7 +56,8 @@ _global_script_class_icons={
 "Entity": "",
 "Game": "",
 "MovementCommand": "",
-"Player": ""
+"Player": "",
+"Scheduler": ""
 }
 
 [application]
