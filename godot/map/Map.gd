@@ -29,3 +29,10 @@ func get_passable_cells(amount = 1):
 			if result.size() >= amount:
 				break
 	return result
+
+func get_floor_cells():
+	var result = []
+	for cell in get_used_cells():
+		if is_floor_passable(cell):
+			result.push_back(cell)
+	return result

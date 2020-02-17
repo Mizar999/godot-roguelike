@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://command/CommandResult.gd"
 }, {
+"base": "Actor",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://entity/Enemy.gd"
+}, {
 "base": "Node",
 "class": "Entity",
 "language": "GDScript",
@@ -39,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://command/MovementCommand.gd"
 }, {
+"base": "Reference",
+"class": "Pathfinder",
+"language": "GDScript",
+"path": "res://map/Pathfinder.gd"
+}, {
 "base": "Actor",
 "class": "Player",
 "language": "GDScript",
@@ -53,9 +63,11 @@ _global_script_class_icons={
 "Actor": "",
 "Command": "",
 "CommandResult": "",
+"Enemy": "",
 "Entity": "",
 "Game": "",
 "MovementCommand": "",
+"Pathfinder": "",
 "Player": "",
 "Scheduler": ""
 }
