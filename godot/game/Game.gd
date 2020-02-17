@@ -14,9 +14,9 @@ func _init(map_p):
 	pathfinder.initialize_map(map)
 	
 	player = spawn("actors/player", Vector2(1, 1))
-	for cell in map.get_passable_cells(5):
+	for cell in map.get_passable_cells(15):
 		spawn("actors/goblin", cell)
-	for cell in map.get_passable_cells(10):
+	for cell in map.get_passable_cells(20):
 		spawn("props/statue", cell).get_node("Symbol").self_modulate = Color(randf(), randf(), randf())
 
 func spawn(path: String, cell: Vector2):
