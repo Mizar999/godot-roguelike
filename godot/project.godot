@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "AStarNode",
+"language": "GDScript",
+"path": "res://map/AStarNode.gd"
+}, {
 "base": "Entity",
 "class": "Actor",
 "language": "GDScript",
@@ -58,8 +63,14 @@ _global_script_classes=[ {
 "class": "Scheduler",
 "language": "GDScript",
 "path": "res://game/Scheduler.gd"
+}, {
+"base": "Reference",
+"class": "SimpleAStar",
+"language": "GDScript",
+"path": "res://map/SimpleAStar.gd"
 } ]
 _global_script_class_icons={
+"AStarNode": "",
 "Actor": "",
 "Command": "",
 "CommandResult": "",
@@ -69,7 +80,8 @@ _global_script_class_icons={
 "MovementCommand": "",
 "Pathfinder": "",
 "Player": "",
-"Scheduler": ""
+"Scheduler": "",
+"SimpleAStar": ""
 }
 
 [application]
