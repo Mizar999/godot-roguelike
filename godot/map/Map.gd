@@ -23,9 +23,18 @@ func get_passable_cells(amount = 1):
 	
 	var used_cells = get_used_cells()
 	used_cells.shuffle()
+	var entity
 	for cell in used_cells:
-		if is_floor_passable(cell) and get_entity_at(cell) == null:
+		entity = get_entity_at(cell)
+		if is_floor_passable(cell) and (!entity or !entity.is_in_group(RL.GROUP_BLOCKER)):
 			result.push_back(cell)
 			if result.size() >= amount:
 				break
+	return result
+
+func get_floor_cells():
+	var result = []
+	for cell in get_used_cells():
+		if is_floor_passable(cell):
+			result.push_back(cell)
 	return result

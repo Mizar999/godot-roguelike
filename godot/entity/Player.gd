@@ -1,9 +1,6 @@
 extends Actor
 class_name Player
 
-#warning-ignore:unused_signal
-signal acted
-
 func _ready():
 	set_process_unhandled_key_input(false)
 
