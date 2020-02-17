@@ -27,3 +27,4 @@ const GROUP_BLOCKER = "blocker"
 
 const SIGNAL_ACTED = "acted"
 const SIGNAL_EXECUTED = "executed"
+const SIGNAL_MAP_CHANGED = "map_changed"

@@ -9,7 +9,7 @@ A coffee-break roguelike made with [Godot](https://godotengine.org/) game engine
 - ~~Create a static dungeon floor for testing~~
 - ~~Add an object layer (another TileMap?)~~
 - ~~Add the player~~
-- Add an enemy
+- ~~Add an enemy~~
 - ~~Add scheduler for player & enemy actions~~
 - ~~Add movement action~~
 - ~~Add basic player movement~~
