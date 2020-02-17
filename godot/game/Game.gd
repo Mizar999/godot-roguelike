@@ -16,8 +16,8 @@ func _init(map_p):
 	player = spawn("actors/player", Vector2(1, 1))
 	for cell in map.get_passable_cells(5):
 		spawn("actors/goblin", cell)
-	#for cell in map.get_passable_cells(10):
-	#	spawn("props/statue", cell).get_node("Symbol").self_modulate = Color(randf(), randf(), randf())
+	for cell in map.get_passable_cells(10):
+		spawn("props/statue", cell).get_node("Symbol").self_modulate = Color(randf(), randf(), randf())
 
 func spawn(path: String, cell: Vector2):
 	var entity = RL.database.create_entity(path)

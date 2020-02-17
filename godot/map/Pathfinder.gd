@@ -3,47 +3,43 @@ class_name Pathfinder
 
 var astar: AStar2D
 var bounds: Rect2
-var dirty_cells: Array
 var _map
 
 # TODO enemies should not bump into each other
 func _init():
 	astar = AStar2D.new()
 	bounds = Rect2()
-	dirty_cells = []
 	_map = null
 
 func initialize_map(map) -> void:
 	astar.clear()
 	_map = map
 	bounds = map.get_used_rect()
-	var cells = map.get_floor_cells()
-	for cell in cells:
+	for cell in map.get_floor_cells():
 		astar.add_point(_get_id(cell), Vector2(cell.x, cell.y))
-	for cell in cells:
-		_connect_neighbors(cells, cell)
 
 func get_path(from: Vector2, to: Vector2):
-	dirty_cells.push_back(from)
-	_connect_dirty_cells()
+	_update_connections([from, to])
 	return astar.get_point_path(_get_id(from), _get_id(to))
 
-func _connect_neighbors(cells: Array, cell_to_connect: Vector2) -> void:
+func _update_connections(passable_cells = []) -> void:
 	var neighbor
 	var neighbor_id
-	var cell_id = _get_id(cell_to_connect)
-	for x in range(-1, 2):
-		for y in range(-1, 2):
-			neighbor = Vector2(cell_to_connect.x + x, cell_to_connect.y + y)
-			if neighbor != cell_to_connect and neighbor in cells and !_map.get_entity_at(neighbor):
-				neighbor_id = _get_id(neighbor)
-				if !astar.are_points_connected(cell_id, neighbor_id):
-					astar.connect_points(cell_id, neighbor_id)
-
-func _connect_dirty_cells() -> void:
+	var cell_id
+	var is_passable
 	var cells = _map.get_floor_cells()
-	while !dirty_cells.empty():
-		_connect_neighbors(cells, dirty_cells.pop_front())
+	for cell in cells:
+		cell_id = _get_id(cell)
+		is_passable = cell in passable_cells
+		for x in range(-1, 2):
+			for y in range(-1, 2):
+				neighbor = Vector2(cell.x + x, cell.y + y)
+				if neighbor != cell and neighbor in cells:
+					neighbor_id = _get_id(neighbor)
+					if is_passable or neighbor in passable_cells or !_map.get_entity_at(neighbor):
+						astar.connect_points(cell_id, neighbor_id)
+					else:
+						astar.disconnect_points(cell_id, neighbor_id)
 
 func _get_id(cell) -> int:
 	return (cell.y * bounds.size.x) + cell.x
