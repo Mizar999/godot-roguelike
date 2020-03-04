@@ -1,7 +1,6 @@
 extends Reference
 class_name SimpleAStar
 
-
 enum Topology {
 	Four,
 	Eight
