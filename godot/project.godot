@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "AStarNode",
 "language": "GDScript",
-"path": "res://map/AStarNode.gd"
+"path": "res://deprecated/AStarNode.gd"
 }, {
 "base": "Entity",
 "class": "Actor",
@@ -67,7 +67,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "SimpleAStar",
 "language": "GDScript",
-"path": "res://map/SimpleAStar.gd"
+"path": "res://deprecated/SimpleAStar.gd"
 } ]
 _global_script_class_icons={
 "AStarNode": "",

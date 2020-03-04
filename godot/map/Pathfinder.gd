@@ -23,6 +23,7 @@ func get_path(from: Vector2, to: Vector2):
 	update_connections([from], to)
 	return astar.get_point_path(_get_id(from), _get_id(to))
 
+# TODO Test if this procedure does what it should do
 func update_connections(cells = [], target = null) -> void:
 	var neighbor
 	var neighbor_id
