@@ -2,6 +2,7 @@ extends Reference
 class_name Game
 
 var map
+var debug_draw
 var player
 var actors: Scheduler
 var pathfinder: Pathfinder
@@ -9,19 +10,20 @@ var pathfinder: Pathfinder
 #warning-ignore:unused_signal
 signal map_changed
 
-func _init(map_p):
+func _init(map_p, debug_draw_p):
 	actors = Scheduler.new()
 	
 	map = map_p
+	debug_draw = debug_draw_p
 	pathfinder = Pathfinder.new()
-	pathfinder.initialize_map(map)
+	pathfinder.initialize_map(map, debug_draw)
 	# warning-ignore:return_value_discarded
 	connect(RL.SIGNAL_MAP_CHANGED, pathfinder, "update_connections")
 	
 	player = spawn("actors/player", Vector2(1, 1))
-	for cell in map.get_passable_cells(120):
-		spawn("actors/goblin", cell)
 	for cell in map.get_passable_cells(5):
+		spawn("actors/goblin", cell)
+	for cell in map.get_passable_cells(25):
 		spawn("props/statue", cell).get_node("Symbol").self_modulate = Color(randf(), randf(), randf())
 
 func spawn(path: String, cell: Vector2):
@@ -40,7 +42,7 @@ func move(actor, cell: Vector2) -> void:
 	var old_cell = actor.cell
 	actor.cell = cell
 	actor.position = map.map_to_world(cell)
-	emit_signal(RL.SIGNAL_MAP_CHANGED, [old_cell, actor.cell])
+	emit_signal(RL.SIGNAL_MAP_CHANGED, [old_cell, cell], cell)
 
 func main_loop() -> void:
 	var actor
