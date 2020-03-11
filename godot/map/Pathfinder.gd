@@ -22,6 +22,7 @@ func initialize_map(map, debug_draw) -> void:
 	_initialize_connections()
 
 func get_path(from: Vector2, to: Vector2):
+	dirty_cells[from] = true
 	update_connections()
 	return astar.get_point_path(_get_id(from), _get_id(to))
 
@@ -40,13 +41,16 @@ func update_connections() -> void:
 				if cell_id != neighbor_id and astar.has_point(cell_id) and astar.has_point(neighbor_id):
 					# TODO Wrong update logic: Movement from cell to neighbor must be possible,
 					# if neighbor is passable
+					# TODO Player doesn't block movement now, fix it somehow
 					if is_passable:
 						if !astar.are_points_connected(cell_id, neighbor_id):
 							astar.connect_points(cell_id, neighbor_id)
 					else:
 						if astar.are_points_connected(cell_id, neighbor_id):
 							astar.disconnect_points(cell_id, neighbor_id)
+						
 					_debug_draw.set_connection(cell, neighbor, astar.are_points_connected(cell_id, neighbor_id))
+					_debug_draw.set_connection(neighbor, cell, astar.are_points_connected(neighbor_id, cell_id))
 	dirty_cells.clear()
 	_debug_draw.update()
 
@@ -69,7 +73,8 @@ func _initialize_connections() -> void:
 				neighbor = Vector2(cell.x + x, cell.y + y)
 				neighbor_id = _get_id(neighbor)
 				if cell_id != neighbor_id and astar.has_point(neighbor_id):
-					astar.connect_points(cell_id, neighbor_id)
+					astar.connect_points(cell_id, neighbor_id, false)
 					_debug_draw.set_connection(cell, neighbor, astar.are_points_connected(cell_id, neighbor_id))
+					_debug_draw.set_connection(neighbor, cell, astar.are_points_connected(neighbor_id, cell_id))
 	_debug_draw.update()
 
